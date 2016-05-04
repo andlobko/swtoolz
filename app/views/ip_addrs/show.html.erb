@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Ip:</strong>
+  <%= @ip_addr.ip %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @ip_addr.description %>
+</p>
+
+<%= link_to 'Edit', edit_ip_addr_path(@ip_addr) %> |
+<%= link_to 'Back', ip_addrs_path %>
