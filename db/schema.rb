@@ -11,16 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160503183645) do
+ActiveRecord::Schema.define(version: 20160506123656) do
 
   create_table "ip_addrs", force: :cascade do |t|
     t.text     "ip"
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "subnet_id"
   end
 
   add_index "ip_addrs", ["ip"], name: "index_ip_addrs_on_ip"
+  add_index "ip_addrs", ["subnet_id"], name: "index_ip_addrs_on_subnet_id"
 
   create_table "subnets", force: :cascade do |t|
     t.text     "subnet_addr"

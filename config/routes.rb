@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  resources :subnets
-  resources :ip_addrs
+  resources :subnets do
+    resources :ip_addrs
+  end
+  #resources :ip_addrs
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
