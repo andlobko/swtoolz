@@ -1,11 +1,21 @@
 class Subnet < ActiveRecord::Base
-  validate :subnet_should_be_valid, on: :create
+  before_validation :normalize_subnet_addr, on: :create
+  validate :subnet_should_be_uniq, on: :create
   validate :subnet_addr_should_not_change, on: :update
 
   private
 
-  def subnet_should_be_valid
-    errors.add(:subnet_addr, 'invalid') unless IPAddress.valid?(subnet_addr)
+  def normalize_subnet_addr
+    begin
+      ip = IPAddress.parse(subnet_addr)
+      ip.prefix = 24
+      self.subnet_addr = "#{ip.network}/24"
+    rescue
+      errors.add(:subnet_addr, 'invalid. Should be IPv4 addr(no netmask/prefix).')
+    end
+  end
+
+  def subnet_should_be_uniq
     errors.add(:subnet_addr, 'already exists') if Subnet.find_by(subnet_addr: subnet_addr)
   end
 
