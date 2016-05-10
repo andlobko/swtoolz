@@ -28,6 +28,7 @@ class SubnetsController < ApplicationController
 
     respond_to do |format|
       if @subnet.save
+        IpAddr.fill_subnet(@subnet)
         format.html { redirect_to @subnet, notice: 'Subnet was successfully created.' }
         format.json { render :show, status: :created, location: @subnet }
       else
