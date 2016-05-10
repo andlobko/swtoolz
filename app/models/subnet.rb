@@ -1,5 +1,5 @@
 class Subnet < ActiveRecord::Base
-  has_many :ip_addrs
+  has_many :ip_addrs, dependent: :destroy
   before_validation :normalize_subnet_addr, on: :create
   validate :subnet_should_be_uniq, on: :create
   validate :subnet_addr_should_not_change, on: :update

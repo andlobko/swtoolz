@@ -25,16 +25,16 @@ class IpAddrsController < ApplicationController
   # POST /ip_addrs.json
   def create
     @ip_addr = IpAddr.new(ip_addr_params)
-
-    respond_to do |format|
-      if @ip_addr.save
-        format.html { redirect_to @ip_addr, notice: 'Ip addr was successfully created.' }
-        format.json { render :show, status: :created, location: @ip_addr }
-      else
-        format.html { render :new }
-        format.json { render json: @ip_addr.errors, status: :unprocessable_entity }
-      end
-    end
+    @ip_addr.save
+    #respond_to do |format|
+    #  if @ip_addr.save
+    #    format.html { redirect_to @ip_addr, notice: 'Ip addr was successfully created.' }
+    #    format.json { render :show, status: :created, location: @ip_addr }
+    #  else
+    #    format.html { render :new }
+    #    format.json { render json: @ip_addr.errors, status: :unprocessable_entity }
+    #  end
+    #end
   end
 
   # PATCH/PUT /ip_addrs/1
