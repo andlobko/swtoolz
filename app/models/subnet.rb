@@ -3,6 +3,7 @@ class Subnet < ActiveRecord::Base
   before_validation :normalize_subnet_addr, on: :create
   validate :subnet_should_be_uniq, on: :create
   validate :subnet_addr_should_not_change, on: :update
+  after_create :fill_subnet
 
   private
 
@@ -22,6 +23,12 @@ class Subnet < ActiveRecord::Base
 
   def subnet_addr_should_not_change
     errors.add(:subnet_addr, 'should not be changed') if subnet_addr_changed?
+  end
+
+  def fill_subnet
+    IPAddress(subnet_addr).each_host do |host|
+      self.ip_addrs.create(ip: host)
+    end
   end
 
 end
