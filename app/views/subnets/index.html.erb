@@ -8,6 +8,7 @@
       <th>Subnet addr</th>
       <th>Description</th>
       <th>Updated at</th>
+      <th>Assigned / Free</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,6 +19,7 @@
         <td><%= subnet.subnet_addr %></td>
         <td><%= subnet.description %></td>
         <td><%= subnet.updated_at.localtime.strftime('%d/%m/%Y %H:%M:%S') %></td>
+        <td><%= subnet.ip_addrs.assigned.count %> / <%= subnet.ip_addrs.unassigned.count %></td>
         <td><%= link_to 'Show', subnet %></td>
         <td><%= link_to 'Edit', edit_subnet_path(subnet) %></td>
         <td><%= link_to 'Destroy', subnet, method: :delete, data: { confirm: 'Are you sure?' } %></td>

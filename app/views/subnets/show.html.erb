@@ -11,6 +11,13 @@
 </p>
 
 <% if @subnet.ip_addrs.any? %>
+    <p>
+      <strong>Assigned:</strong>
+      <%= @subnet.ip_addrs.assigned.count %>
+      <strong>Free:</strong>
+      <%= @subnet.ip_addrs.unassigned.count %>
+    </p>
+
     <table>
       <thead>
       <tr>
