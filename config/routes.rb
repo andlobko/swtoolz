@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :subnets do
-    resources :ip_addrs
+    resources :ip_addrs, only: [:show, :edit, :update]
   end
   #resources :ip_addrs
   # The priority is based upon order of creation: first created -> highest priority.

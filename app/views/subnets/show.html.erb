@@ -25,6 +25,8 @@
             <td><%= ip_addr.ip %></td>
             <td><%= ip_addr.description %></td>
             <td><%= ip_addr.updated_at.localtime.strftime('%d/%m/%Y %H:%M:%S') %></td>
+            <td><%= link_to 'Show', [@subnet, ip_addr] %></td>
+            <td><%= link_to 'Edit', edit_subnet_ip_addr_path(@subnet, ip_addr) %></td>
           </tr>
         <% end %>
       </tbody>

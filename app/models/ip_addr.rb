@@ -1,4 +1,4 @@
 class IpAddr < ActiveRecord::Base
-  belongs_to :subnet
+  belongs_to :subnet, touch: true
 
 end

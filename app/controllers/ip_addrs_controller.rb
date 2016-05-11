@@ -1,5 +1,6 @@
 class IpAddrsController < ApplicationController
   before_action :set_ip_addr, only: [:show, :edit, :update, :destroy]
+  before_action :set_subnet, only: [:show, :edit, :update, :destroy]
 
   # GET /ip_addrs
   # GET /ip_addrs.json
@@ -25,16 +26,15 @@ class IpAddrsController < ApplicationController
   # POST /ip_addrs.json
   def create
     @ip_addr = IpAddr.new(ip_addr_params)
-    @ip_addr.save
-    #respond_to do |format|
-    #  if @ip_addr.save
-    #    format.html { redirect_to @ip_addr, notice: 'Ip addr was successfully created.' }
-    #    format.json { render :show, status: :created, location: @ip_addr }
-    #  else
-    #    format.html { render :new }
-    #    format.json { render json: @ip_addr.errors, status: :unprocessable_entity }
-    #  end
-    #end
+    respond_to do |format|
+      if @ip_addr.save
+        format.html { redirect_to @ip_addr, notice: 'Ip addr was successfully created.' }
+        format.json { render :show, status: :created, location: @ip_addr }
+      else
+        format.html { render :new }
+        format.json { render json: @ip_addr.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # PATCH/PUT /ip_addrs/1
@@ -65,6 +65,9 @@ class IpAddrsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_ip_addr
       @ip_addr = IpAddr.find(params[:id])
+    end
+    def set_subnet
+      @subnet = @ip_addr.subnet
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
