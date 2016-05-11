@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
+
+  root 'static#home'
+
+  controller :static do
+    get :home
+  end
+
   resources :subnets
   resources :ip_addrs, only: [:show, :edit, :update, :destroy]
+
   #resources :ip_addrs
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
