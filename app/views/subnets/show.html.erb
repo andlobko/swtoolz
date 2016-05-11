@@ -17,6 +17,7 @@
         <th>IP Address</th>
         <th>Description</th>
         <th>Updated at</th>
+        <th colspan="2"></th>
       </tr>
       </thead>
       <tbody>
@@ -25,13 +26,14 @@
             <td><%= ip_addr.ip %></td>
             <td><%= ip_addr.description %></td>
             <td><%= ip_addr.updated_at.localtime.strftime('%d/%m/%Y %H:%M:%S') %></td>
-            <td><%= link_to 'Show', [@subnet, ip_addr] %></td>
-            <td><%= link_to 'Edit', edit_subnet_ip_addr_path(@subnet, ip_addr) %></td>
+            <td><%= link_to 'Show', ip_addr %></td>
+            <td><%= link_to 'Edit', edit_ip_addr_path(ip_addr) %></td>
           </tr>
         <% end %>
       </tbody>
     </table>
 <% end %>
+
 
 <%= link_to 'Edit', edit_subnet_path(@subnet) %> |
 <%= link_to 'Back', subnets_path %>

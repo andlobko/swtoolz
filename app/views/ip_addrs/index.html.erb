@@ -16,9 +16,9 @@
       <tr>
         <td><%= ip_addr.ip %></td>
         <td><%= ip_addr.description %></td>
-        <td><%= link_to 'Show', subnet_ip_addr %></td>
-        <td><%= link_to 'Edit', edit_subnet_ip_addr_path(ip_addr) %></td>
-        <td><%= link_to 'Destroy', subnet_ip_addr, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', ip_addr %></td>
+        <td><%= link_to 'Edit', edit_ip_addr_path(ip_addr) %></td>
+        <td><%= link_to 'Destroy', ip_addr, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +26,3 @@
 
 <br>
 
-<%= link_to 'New Ip addr', new_subnet_ip_addr_path %>
