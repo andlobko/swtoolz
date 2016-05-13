@@ -51,7 +51,12 @@
       </thead>
       <tbody>
         <% @subnet.ip_addrs.each do |ip_addr| %>
-          <tr>
+          <% if ip_addr.description != nil %>
+            <% tr_class = "class='success'" %>
+          <% else %>
+            <% tr_class = "" %>
+          <% end %>
+          <tr <%= tr_class.html_safe %>>
             <td><%= link_to ip_addr.ip, ip_addr %></td>
             <td><%= ip_addr.description %></td>
             <td nowrap><%= ip_addr.updated_at.localtime.strftime('%d/%m/%Y %H:%M:%S') %></td>
