@@ -1,12 +1,25 @@
-<p>
-  <strong>Ip:</strong>
-  <%= @ip_addr.ip %>
-</p>
+<div class="row">
+  <div class="page-header">
+    <h1>IP Address Details: <small><%= @ip_addr.ip %></small></h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-8">
+    <ul class="list-group">
+      <li class="list-group-item">
+        <strong>Description:</strong>
+        <%= @ip_addr.description %>
+      </li>
+    </ul>
+  </div>
+</div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @ip_addr.description %>
-</p>
-
-<%= link_to 'Edit', edit_ip_addr_path(@ip_addr) %> |
-<%= link_to 'Back', @subnet %>
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-8">
+    <%= link_to "Back", @subnet, class: "btn btn-primary" %>
+    <%= link_to "Edit", edit_ip_addr_path, class: "btn btn-warning" %>
+    <%= link_to "Delete", @ip_addr, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+  </div>
+</div>

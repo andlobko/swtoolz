@@ -16,7 +16,10 @@ class IpAddrsController < ApplicationController
   def update
     respond_to do |format|
       if @ip_addr.update(ip_addr_params)
-        format.html { redirect_to @ip_addr, notice: 'Ip addr was successfully updated.' }
+        format.html {
+          flash[:success] = 'Ip addr was successfully updated.'
+          redirect_to @ip_addr
+        }
         format.json { render :show, status: :ok, location: @ip_addr }
       else
         format.html { render :edit }
@@ -30,7 +33,10 @@ class IpAddrsController < ApplicationController
   def destroy
     @ip_addr.free
     respond_to do |format|
-      format.html { redirect_to @subnet, notice: 'Ip addr was successfully set free.' }
+      format.html {
+        flash[:success] = 'Ip addr was successfully set free.'
+        redirect_to @subnet
+      }
       format.json { head :no_content }
     end
   end

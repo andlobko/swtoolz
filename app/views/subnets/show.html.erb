@@ -1,45 +1,73 @@
-<p>
-  <strong>Subnet addr:</strong>
-  <%= @subnet.subnet_addr %>
-</p>
+<div class="row">
+  <div class="page-header">
+    <h1>Subnet Details</h1>
+  </div>
+</div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @subnet.description %>
-</p>
-
-<% if @subnet.ip_addrs.any? %>
-    <p>
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-8">
+  <ul class="list-group">
+    <li class="list-group-item">
+      <strong>Address:</strong>
+      <%= @subnet.subnet_addr %>
+    </li>
+    <li class="list-group-item">
       <strong>Assigned:</strong>
       <%= @subnet.ip_addrs.assigned.count %>
+    </li>
+    <li class="list-group-item">
       <strong>Free:</strong>
       <%= @subnet.ip_addrs.unassigned.count %>
-    </p>
+    </li>
+    <li class="list-group-item">
+      <strong>Description:</strong>
+      <%= @subnet.description %>
+    </li>
+  </ul>
+  </div>
+</div>
 
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-8">
+    <%= link_to "Back", subnets_path, class: "btn btn-primary" %>
+    <%= link_to "Edit", edit_subnet_path, class: "btn btn-warning" %>
+    <%= link_to "Delete", @subnet, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-8">
     <table class="table table-hover table-condensed">
       <thead>
       <tr>
-        <th>IP Address</th>
+        <th nowrap>IP Address</th>
         <th>Description</th>
-        <th>Updated at</th>
-        <th colspan="3"></th>
+        <th nowrap>Updated at</th>
+        <th colspan="2"></th>
       </tr>
       </thead>
       <tbody>
         <% @subnet.ip_addrs.each do |ip_addr| %>
           <tr>
-            <td><%= ip_addr.ip %></td>
+            <td><%= link_to ip_addr.ip, ip_addr %></td>
             <td><%= ip_addr.description %></td>
-            <td><%= ip_addr.updated_at.localtime.strftime('%d/%m/%Y %H:%M:%S') %></td>
-            <td><%= link_to 'Show', ip_addr %></td>
-            <td><%= link_to 'Edit', edit_ip_addr_path(ip_addr) %></td>
-            <td><%= link_to 'Free', ip_addr, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td nowrap><%= ip_addr.updated_at.localtime.strftime('%d/%m/%Y %H:%M:%S') %></td>
+            <td>
+              <%= link_to edit_ip_addr_path(ip_addr) do %>
+                <span class="glyphicon glyphicon-pencil" area-hidden="true" title="Edit"></span>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to ip_addr, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                  <span class="glyphicon glyphicon-trash" area-hidden="true" title="Delete"></span>
+              <% end %>
+            </td>
           </tr>
         <% end %>
       </tbody>
     </table>
-<% end %>
-
-
-<%= link_to 'Edit', edit_subnet_path(@subnet) %> |
-<%= link_to 'Back', subnets_path %>
+  </div>
+</div>
