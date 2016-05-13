@@ -29,8 +29,8 @@ class SubnetsController < ApplicationController
     respond_to do |format|
       if @subnet.save
         format.html {
-          flash[:alert] = "Subnet was successfully created."
-          redirect_to subnets_url, success: 'Subnet was successfully created.'
+          flash[:success] = "Subnet was successfully created."
+          redirect_to subnets_url
         }
         format.json { render :show, status: :created, location: @subnet }
       else
@@ -45,7 +45,10 @@ class SubnetsController < ApplicationController
   def update
     respond_to do |format|
       if @subnet.update(subnet_params)
-        format.html { redirect_to subnets_url, notice: 'Subnet was successfully updated.' }
+        format.html {
+          flash[:success] = "Subnet was successfully updated."
+          redirect_to subnets_url
+        }
         format.json { render :show, status: :ok, location: @subnet }
       else
         format.html { render :edit }
@@ -59,7 +62,10 @@ class SubnetsController < ApplicationController
   def destroy
     @subnet.destroy
     respond_to do |format|
-      format.html { redirect_to subnets_url, notice: 'Subnet was successfully destroyed.' }
+      format.html {
+        redirect_to subnets_url
+        flash[:success] = 'Subnet was successfully destroyed.'
+      }
       format.json { head :no_content }
     end
   end

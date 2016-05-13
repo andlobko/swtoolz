@@ -1,6 +1,7 @@
-<div class="row">
+
 <%= form_for @subnet, html: {class: "form-horizontal"} do |f| %>
   <% if @subnet.errors.any? %>
+    <div class="form-group">
     <div id="error_explanation" class="alert alert-danger">
       <h2><%= pluralize(@subnet.errors.count, "error") %> prohibited this subnet from being saved:</h2>
       <ul>
@@ -9,9 +10,10 @@
       <% end %>
       </ul>
     </div>
+    </div>
   <% end %>
 
-  <% if action_name == "new" %>
+  <% if ["new", "create"].include? action_name %>
     <div class="form-group">
       <%= f.label :subnet_addr, class: "col-md-2 control-label" %>
       <div class="col-md-2">
@@ -33,4 +35,4 @@
     </div>
   </div>
 <% end %>
-</div>
+
