@@ -2,13 +2,18 @@
 <%= form_for @subnet, html: {class: "form-horizontal"} do |f| %>
   <% if @subnet.errors.any? %>
     <div class="form-group">
-    <div id="error_explanation" class="alert alert-danger">
-      <h2><%= pluralize(@subnet.errors.count, "error") %> prohibited this subnet from being saved:</h2>
-      <ul>
+      <div class="col-md-2"></div>
+      <div class="col-md-10">
+    <div id="error_explanation" class="panel panel-danger">
+      <div class="panel-heading">
+        <strong><%= pluralize(@subnet.errors.count, "error") %> prohibited this subnet from being saved:</strong>
+      </div>
+      <ul class="list-group">
       <% @subnet.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        <li class="list-group-item"><%= message %></li>
       <% end %>
       </ul>
+    </div>
     </div>
     </div>
   <% end %>

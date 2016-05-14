@@ -1,13 +1,19 @@
 <%= form_for @ip_addr, html: {class: "form-horizontal"} do |f| %>
   <% if @ip_addr.errors.any? %>
-    <div class="form-group">
-    <div id="error_explanation" class="alert alert-danger">
-      <h2><%= pluralize(@ip_addr.errors.count, "error") %> prohibited this ip_addr from being saved:</h2>
-      <ul>
-      <% @ip_addr.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+      <div class="form-group">
+        <div class="col-md-2"></div>
+        <div class="col-md-10">
+          <div id="error_explanation" class="panel panel-danger">
+              <div class="panel-heading">
+                <strong><%= pluralize(@ip_addr.errors.count, "error") %> prohibited this ip_addr from being
+                  saved:</strong>
+              </div>
+              <ul class="list-group">
+                <% @ip_addr.errors.full_messages.each do |message| %>
+                    <li class="list-group-item"><%= message %></li>
+                <% end %>
+              </ul>
+    </div>
     </div>
     </div>
   <% end %>
