@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160506123656) do
+ActiveRecord::Schema.define(version: 20160518110335) do
 
   create_table "ip_addrs", force: :cascade do |t|
     t.text     "ip"
@@ -24,6 +24,13 @@ ActiveRecord::Schema.define(version: 20160506123656) do
   add_index "ip_addrs", ["ip"], name: "index_ip_addrs_on_ip"
   add_index "ip_addrs", ["subnet_id"], name: "index_ip_addrs_on_subnet_id"
 
+  create_table "roles", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "subnets", force: :cascade do |t|
     t.text     "subnet_addr"
     t.text     "description"
@@ -32,5 +39,23 @@ ActiveRecord::Schema.define(version: 20160506123656) do
   end
 
   add_index "subnets", ["subnet_addr"], name: "index_subnets_on_subnet_addr", unique: true
+
+  create_table "users", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "role_id"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.string   "email",               default: "", null: false
+    t.string   "encrypted_password",  default: "", null: false
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",       default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["role_id"], name: "index_users_on_role_id"
 
 end

@@ -5,3 +5,9 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+role_admin = Role.create({name: 'admin', description: 'Can manage everything.'})
+role_user = Role.create({name: 'user', description: 'Read only.'})
+role_manager = Role.create({name: 'manager', description: 'Can edit except users.'})
+user = User.create({name: 'admin', email: 'foo@bar.com',
+                    password: 'admin', password_confirmation: 'admin', role_id: role_admin.id})

@@ -1,4 +1,5 @@
 class SubnetsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_subnet, only: [:show, :edit, :update, :destroy]
 
   # GET /subnets
