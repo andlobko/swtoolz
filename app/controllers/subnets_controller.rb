@@ -1,6 +1,7 @@
 class SubnetsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_subnet, only: [:show, :edit, :update, :destroy]
+  #before_action :set_subnet, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /subnets
   # GET /subnets.json
