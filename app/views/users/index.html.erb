@@ -7,6 +7,9 @@
     <tr>
       <th>Name</th>
       <th>Role</th>
+      <th>Email</th>
+      <th>Last login date</th>
+      <th>Last login ip</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,6 +19,9 @@
       <tr>
         <td><%= user.name %></td>
         <td><%= user.role.name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.last_sign_in_date %></td>
+        <td><%= user.last_sign_in_ip %></td>
         <td><%= link_to 'Show', user %></td>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
