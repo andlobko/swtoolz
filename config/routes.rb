@@ -1,8 +1,14 @@
 Rails.application.routes.draw do
 
-  root to: 'static#home'
-
   devise_for :users
+
+  authenticated :user do
+    root to: 'static#home', as: :authenticated_root
+  end
+  devise_scope :user do
+    root to: 'devise/sessions#new'
+  end
+
   scope "/admin" do
     resources :users
   end
