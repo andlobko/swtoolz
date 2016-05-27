@@ -1,35 +1,46 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="page-header">
+    <h1>Users</h1>
+  </div>
+</div>
 
-<h1>Listing Users</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Role</th>
-      <th>Email</th>
-      <th>Last login date</th>
-      <th>Last login ip</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @users.each do |user| %>
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-8">
+    <table class="table table-hover table-condensed">
+      <thead>
       <tr>
-        <td><%= user.name %></td>
-        <td><%= user.role.name %></td>
-        <td><%= user.email %></td>
-        <td><%= user.last_sign_in_date %></td>
-        <td><%= user.last_sign_in_ip %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th nowrap>Last sign in date</th>
+        <th nowrap>Last sign in IP</th>
+        <th colspan="2"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+      </thead>
 
-<br>
-
-<%= link_to 'New User', new_user_path %>
+      <tbody>
+      <% @users.each do |user| %>
+          <tr>
+            <td><%= link_to user.name, user %></td>
+            <td><%= user.email %></td>
+            <td><%= user.role.name %></td>
+            <td nowrap><%= user.last_sign_in_date %></td>
+            <td nowrap><%= user.last_sign_in_ip %></td>
+            <td>
+              <%= link_to edit_user_path(user) do %>
+                  <span class="glyphicon glyphicon-pencil" area-hidden="true" title="Edit"></span>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to user, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                  <span class="glyphicon glyphicon-trash" area-hidden="true" title="Delete"></span>
+              <% end %>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-3"></div>
+</div>

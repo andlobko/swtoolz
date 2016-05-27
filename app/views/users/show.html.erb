@@ -1,14 +1,42 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="page-header">
+    <h1>User Details</h1>
+  </div>
+</div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-8">
+    <ul class="list-group">
+      <li class="list-group-item">
+        <strong>Name:</strong>
+        <%= @user.name %>
+      </li>
+      <li class="list-group-item">
+        <strong>Email:</strong>
+        <%= @user.email %>
+      </li>
+      <li class="list-group-item">
+        <strong>Role:</strong>
+        <%= @user.role.name %>
+      </li>
+      <li class="list-group-item">
+        <strong>Last sign in date:</strong>
+        <%= @user.last_sign_in_date %>
+      </li>
+      <li class="list-group-item">
+        <strong>Last sign in IP:</strong>
+        <%= @user.last_sign_in_ip %>
+      </li>
+    </ul>
+  </div>
+</div>
 
-<p>
-  <strong>Role:</strong>
-  <%= @user.role.name %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-8">
+    <%= link_to "Back", users_path, class: "btn btn-primary" %>
+    <%= link_to "Edit", edit_user_path, class: "btn btn-warning" %>
+    <%= link_to "Delete", @user, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+  </div>
+</div>
