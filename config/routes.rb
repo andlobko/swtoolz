@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   #resources :users
 
-  resources :roles
+  resources :roles, except: [:destroy]
 
   controller :static do
     get :home
