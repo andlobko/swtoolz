@@ -19,7 +19,9 @@
   <div class="col-md-1"></div>
   <div class="col-md-8">
     <%= link_to "Back", @subnet, class: "btn btn-primary" %>
-    <%= link_to "Edit", edit_ip_addr_path, class: "btn btn-warning" %>
-    <%= link_to "Delete", @ip_addr, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+    <% if can? :manage, @ip_addr %>
+      <%= link_to "Edit", edit_ip_addr_path, class: "btn btn-warning" %>
+      <%= link_to "Delete", @ip_addr, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+    <% end %>
   </div>
 </div>

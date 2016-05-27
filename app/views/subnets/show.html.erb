@@ -32,8 +32,10 @@
   <div class="col-md-1"></div>
   <div class="col-md-8">
     <%= link_to "Back", subnets_path, class: "btn btn-primary" %>
-    <%= link_to "Edit", edit_subnet_path, class: "btn btn-warning" %>
-    <%= link_to "Delete", @subnet, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+    <% if can? :manage, @subnet %>
+      <%= link_to "Edit", edit_subnet_path, class: "btn btn-warning" %>
+      <%= link_to "Delete", @subnet, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+    <% end %>
   </div>
 </div>
 <br>
@@ -60,16 +62,18 @@
             <td><%= link_to ip_addr.ip, ip_addr %></td>
             <td><%= ip_addr.description %></td>
             <td nowrap><%= ip_addr.updated_at.localtime.strftime('%d/%m/%Y %H:%M:%S') %></td>
-            <td>
-              <%= link_to edit_ip_addr_path(ip_addr) do %>
-                <span class="glyphicon glyphicon-pencil" area-hidden="true" title="Edit"></span>
-              <% end %>
-            </td>
-            <td>
-              <%= link_to ip_addr, method: :delete, data: { confirm: 'Are you sure?' } do %>
-                  <span class="glyphicon glyphicon-trash" area-hidden="true" title="Delete"></span>
-              <% end %>
-            </td>
+            <% if can? :manage, ip_addr %>
+              <td>
+                <%= link_to edit_ip_addr_path(ip_addr) do %>
+                  <span class="glyphicon glyphicon-pencil" area-hidden="true" title="Edit"></span>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to ip_addr, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                    <span class="glyphicon glyphicon-trash" area-hidden="true" title="Delete"></span>
+                <% end %>
+              </td>
+            <% end %>
           </tr>
         <% end %>
       </tbody>

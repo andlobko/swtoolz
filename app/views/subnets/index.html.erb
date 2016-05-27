@@ -26,16 +26,18 @@
           <td><%= subnet.description %></td>
           <td nowrap><%= subnet.updated_at.localtime.strftime('%d/%m/%Y %H:%M:%S') %></td>
           <td><%= subnet.ip_addrs.assigned.count %> / <%= subnet.ip_addrs.unassigned.count %></td>
-          <td>
-            <%= link_to edit_subnet_path(subnet) do %>
-                <span class="glyphicon glyphicon-pencil" area-hidden="true" title="Edit"></span>
-            <% end %>
-          </td>
-          <td>
-            <%= link_to subnet, method: :delete, data: { confirm: 'Are you sure?' } do %>
-                <span class="glyphicon glyphicon-trash" area-hidden="true" title="Delete"></span>
-            <% end %>
-          </td>
+          <% if can? :manage, subnet %>
+            <td>
+              <%= link_to edit_subnet_path(subnet) do %>
+                  <span class="glyphicon glyphicon-pencil" area-hidden="true" title="Edit"></span>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to subnet, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                  <span class="glyphicon glyphicon-trash" area-hidden="true" title="Delete"></span>
+              <% end %>
+            </td>
+          <% end %>
         </tr>
         <% end %>
       </tbody>
