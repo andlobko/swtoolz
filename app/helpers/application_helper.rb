@@ -21,6 +21,18 @@ module ApplicationHelper
       end
       message.html_safe
     end
+  end
 
+  def object_name_for_audits(record)
+    record.auditable_type.constantize.find(record.auditable_id).to_s
+  end
+
+  def get_changes_for_audits(record)
+    html = ""
+    record.each do |key, value|
+      html += "<br>" unless html.blank?
+      html += "<strong>#{key}:</strong> #{value}"
+    end
+    html.html_safe
   end
 end

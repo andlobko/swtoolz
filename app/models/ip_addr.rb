@@ -1,5 +1,6 @@
 class IpAddr < ActiveRecord::Base
   belongs_to :subnet, touch: true
+  audited associated_with: :subnet
   validate :ip_should_not_change, on: :update
   validates :description, on: :update, length: { maximum: 150,
                                                             too_long: "length should be less then %{count} characters." }
@@ -8,6 +9,10 @@ class IpAddr < ActiveRecord::Base
 
   def free
     self.update(description: nil)
+  end
+
+  def to_s
+    self.ip
   end
 
   private

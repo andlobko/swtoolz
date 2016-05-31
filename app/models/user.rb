@@ -26,6 +26,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def history
+    Audited.audit_class.where(user_id: self.id).order(created_at: :desc)
+  end
+
   private
   def assign_role
     self.role = Role.find_by_name('user') if self.role.nil?

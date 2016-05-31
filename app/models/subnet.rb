@@ -1,11 +1,17 @@
 class Subnet < ActiveRecord::Base
   has_many :ip_addrs, dependent: :destroy
+  audited
+  has_associated_audits
   before_validation :normalize_subnet_addr, on: :create
   validate :subnet_should_be_uniq, on: :create
   validate :subnet_addr_should_not_change, on: :update
   validates :description, on: [:create, :update], length: { maximum: 150,
                        too_long: "length should be less then %{count} characters." }
   after_create :fill_subnet
+
+  def to_s
+    self.subnet_addr
+  end
 
   private
 
