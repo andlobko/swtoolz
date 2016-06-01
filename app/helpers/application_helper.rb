@@ -24,7 +24,7 @@ module ApplicationHelper
   end
 
   def object_name_for_audits(record)
-    record.auditable_type.constantize.find(record.auditable_id).to_s
+    record.auditable_type.constantize.find(record.auditable_id).to_s rescue "n/a"
   end
 
   def get_changes_for_audits(record)

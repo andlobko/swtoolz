@@ -21,6 +21,8 @@ Rails.application.routes.draw do
     get :home
   end
 
+  get 'logs', to: "logs#show"
+
   resources :subnets
   resources :ip_addrs, only: [:show, :edit, :update, :destroy]
 

@@ -1,8 +1,9 @@
 class IpAddrsController < ApplicationController
+  load_and_authorize_resource
   before_action :authenticate_user!
   #before_action :set_ip_addr, only: [:show, :edit, :update, :destroy]
   before_action :set_subnet, only: [:show, :edit, :update, :destroy]
-  load_and_authorize_resource
+
 
   # GET /ip_addrs/1
   # GET /ip_addrs/1.json

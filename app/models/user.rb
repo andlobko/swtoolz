@@ -26,8 +26,8 @@ class User < ActiveRecord::Base
     end
   end
 
-  def history
-    Audited.audit_class.where(user_id: self.id).order(created_at: :desc)
+  def history(limit = 100)
+    Audited.audit_class.unscoped.where(user_id: self.id).order(created_at: :desc).limit(limit)
   end
 
   private

@@ -42,7 +42,7 @@
 </div>
 
 <br>
-
+<% if @user.history.any? %>
 <div class="row">
   <div class="col-md-1"></div>
   <div class="col-md-10">
@@ -72,4 +72,6 @@
         <% end %>
       </tbody>
     </table>
+  </div>
 </div>
+<% end %>
