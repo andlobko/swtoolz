@@ -1,3 +1,10 @@
+<%= form_tag logs_path, method: 'get' do %>
+  <%= select_tag :log_action,
+                 options_from_collection_for_select(@log_actions, :action, :action, params[:log_action]),
+                 include_blank: "any" %>
+  <%= submit_tag "Search", name: nil %>
+<% end %>
+<%= will_paginate @logs %>
 <table class="table table-hover table-condensed">
   <thead>
     <tr>
@@ -24,3 +31,5 @@
     <% end %>
   </tbody>
 </table>
+
+<%= console %>

@@ -51,4 +51,5 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'autoprefixer-rails'
 gem 'devise'
 gem 'cancancan', '~> 1.10'
-gem 'audited-activerecord', "~> 4.0"
+gem 'audited-activerecord', '~> 4.0'
+gem 'will_paginate', '~> 3.1.0'
