@@ -4,5 +4,9 @@ class LogsController < ApplicationController
     @logs = Log.unscoped.
         search_action(params[:log_action]).
         order(created_at: :desc).paginate(page: params[:page], per_page: 10)
+    respond_to do |format|
+      format.html
+      format.js {}
+    end
   end
 end

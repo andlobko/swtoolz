@@ -1,35 +1,9 @@
-<%= form_tag logs_path, method: 'get' do %>
+<%= form_tag logs_path, method: 'get', id: 'logs_search', remote: true do %>
   <%= select_tag :log_action,
                  options_from_collection_for_select(@log_actions, :action, :action, params[:log_action]),
                  include_blank: "any" %>
   <%= submit_tag "Search", name: nil %>
 <% end %>
-<%= will_paginate @logs %>
-<table class="table table-hover table-condensed">
-  <thead>
-    <tr>
-      <th>Date</th>
-      <th>Object</th>
-      <th>Obj name</th>
-      <th>Action</th>
-      <th>Old value</th>
-      <th>New value</th>
-      <th>Comment</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @logs.each do |record| %>
-      <tr>
-        <td><%= record.created_at.localtime.strftime('%d/%m/%Y %H:%M:%S') %></td>
-        <td><%= record.auditable_type %></td>
-        <td><%= object_name_for_audits(record) %></td>
-        <td><%= record.action %></td>
-        <td><%= get_changes_for_audits(record.old_attributes) %></td>
-        <td><%= get_changes_for_audits(record.new_attributes) %></td>
-        <td><%= record.comment %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<%= console %>
+<div id="logs_table">
+  <%= render "logs_table" %>
+</div>
