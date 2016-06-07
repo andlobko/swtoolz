@@ -1,0 +1,35 @@
+<%= form_tag logs_path, method: 'get', id: 'logs_search', remote: true, class: 'form-horizontal' do %>
+    <div class="form-group">
+      <%= label_tag "Action:", nil, class: 'form-label col-md-1' %>
+      <div class="col-md-2">
+        <%= select_tag :log_action,
+                   options_from_collection_for_select(@log_actions, :action, :action, params[:log_action]),
+                   include_blank: "any", class: 'form-control' %>
+      </div>
+      <%= label_tag "Type:", nil, class: 'form-label col-md-1' %>
+      <div class="col-md-2">
+        <%= select_tag :log_type,
+                       options_from_collection_for_select(@log_types, :auditable_type, :auditable_type, params[:log_type]),
+                       include_blank: "any", class: 'form-control' %>
+      </div>
+      <%= label_tag "Per page:", nil, class: 'form-label col-md-1' %>
+      <div class="col-md-2">
+        <%= select_tag :per_page,
+                       options_for_select([[10, "10"], [20, "20"], [50, "50"], [100, "100"]], params[:per_page] || 20),
+                       class: 'form-control' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= label_tag "Comment:", nil, class: 'form-label col-md-1' %>
+      <div class="col-md-5">
+        <%= text_field_tag 'log_comment', params[:log_comment], class: 'form-control' %>
+      </div>
+      <%= label_tag "Changes:", nil, class: 'form-label col-md-1' %>
+      <div class="col-md-5">
+        <%= text_field_tag 'log_changes', params[:log_changes], class: 'form-control' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= submit_tag "Search", name: nil, class: 'btn btn-primary' %>
+    </div>
+<% end %>

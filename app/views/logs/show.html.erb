@@ -1,9 +1,10 @@
-<%= form_tag logs_path, method: 'get', id: 'logs_search', remote: true do %>
-  <%= select_tag :log_action,
-                 options_from_collection_for_select(@log_actions, :action, :action, params[:log_action]),
-                 include_blank: "any" %>
-  <%= submit_tag "Search", name: nil %>
-<% end %>
-<div id="logs_table">
-  <%= render "logs_table" %>
+<div class="row">
+  <div class="page-header">
+    <h1>Listing Logs</h1>
+  </div>
 </div>
+
+<%= render "form" %>
+
+<%= render "logs_table" %>
+

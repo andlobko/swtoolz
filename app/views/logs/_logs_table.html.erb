@@ -1,27 +1,30 @@
-<%= will_paginate @logs %>
-<table class="table table-hover table-condensed">
-  <thead>
-  <tr>
-    <th>Date</th>
-    <th>Object</th>
-    <th>Obj name</th>
-    <th>Action</th>
-    <th>Old value</th>
-    <th>New value</th>
-    <th>Comment</th>
-  </tr>
-  </thead>
-  <tbody>
-  <% @logs.each do |record| %>
+<div id="logs_table">
+  <div class="text-center"><%= will_paginate @logs, renderer: BootstrapPagination::Rails %></div>
+  <table class="table table-hover table-condensed">
+    <thead>
       <tr>
-        <td><%= record.created_at.localtime.strftime('%d/%m/%Y %H:%M:%S') %></td>
-        <td><%= record.auditable_type %></td>
-        <td><%= object_name_for_audits(record) %></td>
-        <td><%= record.action %></td>
-        <td><%= get_changes_for_audits(record.old_attributes) %></td>
-        <td><%= get_changes_for_audits(record.new_attributes) %></td>
-        <td><%= record.comment %></td>
+        <th>Date</th>
+        <th>Object</th>
+        <th>Obj name</th>
+        <th>Action</th>
+        <th>Old value</th>
+        <th>New value</th>
+        <th>Comment</th>
       </tr>
-  <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @logs.each do |record| %>
+        <tr>
+          <td><%= record.created_at.localtime.strftime('%d/%m/%Y %H:%M:%S') %></td>
+          <td><%= record.auditable_type %></td>
+          <td><%= object_name_for_audits(record) %></td>
+          <td><%= record.action %></td>
+          <td><%= get_changes_for_audits(record.old_attributes) %></td>
+          <td><%= get_changes_for_audits(record.new_attributes) %></td>
+          <td><%= record.comment %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="text-center"><%= will_paginate @logs, renderer: BootstrapPagination::Rails %></div>
+</div>
