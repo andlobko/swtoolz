@@ -1,10 +1,15 @@
 class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :rememberable, :trackable
+  audited only: [:name, :role_id, :email]
   validates :password, confirmation: true
   validates :name, presence: true, uniqueness: true
   belongs_to :role
 
   before_save :assign_role
+
+  def to_s
+    self.name
+  end
 
   def admin?
     self.role.name == "admin"

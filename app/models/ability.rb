@@ -7,8 +7,9 @@ class Ability
       can :manage, :all
     elsif user.manager?
       can :manage, [IpAddr, Subnet]
+      can :read, Log
     elsif user.user?
-      can :read, [IpAddr, Subnet]
+      can :read, [IpAddr, Subnet, Log]
     end
   end
 end
