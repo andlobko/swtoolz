@@ -8,6 +8,10 @@ class ApplicationController < ActionController::Base
     redirect_to root_url
   end
 
+  def get_username_for_audited
+    current_user[:name] rescue "n/a"
+  end
+
   protected
   def configure_permited_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email])

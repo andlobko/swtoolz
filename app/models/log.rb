@@ -33,4 +33,12 @@ class Log
     end
   end
 
+  def self.search_username(username)
+    if username.present?
+      where(username: username)
+    else
+      where(nil)
+    end
+  end
+
 end

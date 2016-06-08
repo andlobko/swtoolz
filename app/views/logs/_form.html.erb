@@ -12,6 +12,12 @@
                        options_from_collection_for_select(@log_types, :auditable_type, :auditable_type, params[:log_type]),
                        include_blank: "any", class: 'form-control' %>
       </div>
+      <%= label_tag "User:", nil, class: 'form-label col-md-1' %>
+      <div class="col-md-2">
+        <%= select_tag :log_username,
+                       options_from_collection_for_select(@log_usernames, :username, :username, params[:log_type]),
+                       include_blank: "any", class: 'form-control' %>
+      </div>
       <%= label_tag "Per page:", nil, class: 'form-label col-md-1' %>
       <div class="col-md-2">
         <%= select_tag :per_page,
