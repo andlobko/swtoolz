@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :device_templates
   devise_for :users
 
   authenticated :user do
@@ -25,5 +26,6 @@ Rails.application.routes.draw do
 
   resources :subnets
   resources :ip_addrs, only: [:show, :edit, :update, :destroy]
+  resources :device_templates
 
 end

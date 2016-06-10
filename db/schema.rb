@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160530113709) do
+ActiveRecord::Schema.define(version: 20160610100311) do
 
   create_table "audits", force: :cascade do |t|
     t.integer  "auditable_id"
@@ -35,6 +35,13 @@ ActiveRecord::Schema.define(version: 20160530113709) do
   add_index "audits", ["created_at"], name: "index_audits_on_created_at"
   add_index "audits", ["request_uuid"], name: "index_audits_on_request_uuid"
   add_index "audits", ["user_id", "user_type"], name: "user_index"
+
+  create_table "device_templates", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "ip_addrs", force: :cascade do |t|
     t.text     "ip"

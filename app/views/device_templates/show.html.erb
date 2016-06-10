@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="page-header">
+    <h1>Device Template Details</h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-8">
+    <ul class="list-group">
+      <li class="list-group-item">
+        <strong>Name:</strong>
+        <%= @device_template.name %>
+      </li>
+      <li class="list-group-item">
+        <strong>Description:</strong>
+        <%= @device_template.description %>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-8">
+    <%= link_to "Back", device_templates_path, class: "btn btn-primary" %>
+    <% if can? :manage, @device_template %>
+        <%= link_to "Edit", edit_device_template_path, class: "btn btn-warning" %>
+        <%= link_to "Delete", @device_template, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+    <% end %>
+  </div>
+</div>

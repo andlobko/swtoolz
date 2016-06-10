@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="page-header">
+    <h1>Listing Device Templates</h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-8">
+    <table class="table table-hover table-condensed">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th colspan="2"></th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @device_templates.each do |device_template| %>
+          <tr>
+            <td><%= link_to device_template.name, device_template %></td>
+            <td><%= device_template.description %></td>
+            <% if can? :manage, device_template %>
+                <td>
+                  <%= link_to edit_device_template_path(device_template) do %>
+                      <span class="glyphicon glyphicon-pencil" area-hidden="true" title="Edit"></span>
+                  <% end %>
+                </td>
+                <td>
+                  <%= link_to device_template, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                      <span class="glyphicon glyphicon-trash" area-hidden="true" title="Delete"></span>
+                  <% end %>
+                </td>
+            <% end %>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-3"></div>
+</div>
