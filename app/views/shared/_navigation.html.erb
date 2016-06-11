@@ -14,10 +14,26 @@
                  aria-expanded="false">Subnets<span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><%= link_to 'Index', subnets_path %></li>
-                <li><%= link_to 'New Subnet', new_subnet_path %></li>
+                <% if can? :manage, Subnet %>
+                  <li><%= link_to 'New Subnet', new_subnet_path %></li>
+                <% end %>
                 <li role="separator" class="divider"></li>
                 <% Subnet.all.each do |subnet| %>
                     <li><%= link_to subnet.subnet_addr, subnet %></li>
+                <% end %>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                 aria-expanded="false">PPPoE<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><%= link_to 'Index', pppoe_servers_path %></li>
+                <% if can? :manage, PppoeServer %>
+                  <li><%= link_to 'New Server', new_pppoe_server_path %></li>
+                <% end %>
+                <li role="separator" class="divider"></li>
+                <% PppoeServer.all.each do |pppoe_server| %>
+                    <li><%= link_to pppoe_server.name, pppoe_server %></li>
                 <% end %>
               </ul>
             </li>

@@ -1,41 +1,66 @@
-<%= form_for(@pppoe_server) do |f| %>
-  <% if @pppoe_server.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@pppoe_server.errors.count, "error") %> prohibited this pppoe_server from being saved:</h2>
+<%= form_for @pppoe_server, html: {class: "form-horizontal"} do |f| %>
+    <% if @pppoe_server.errors.any? %>
+        <div class="form-group">
+          <div class="col-md-2"></div>
+          <div class="col-md-10">
+            <div id="error_explanation" class="panel panel-danger">
+              <div class="panel-heading">
+                <strong><%= pluralize(@pppoe_server.errors.count, "error") %> prohibited this PPPoE server from being saved:</strong>
+              </div>
+              <ul class="list-group">
+                <% @pppoe_server.errors.full_messages.each do |message| %>
+                    <li class="list-group-item"><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+    <% end %>
 
-      <ul>
-      <% @pppoe_server.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+
+    <div class="form-group">
+      <%= f.label :name, class: "col-md-2 control-label" %>
+      <div class="col-md-2">
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_field :description %>
-  </div>
-  <div class="field">
-    <%= f.label :address %><br>
-    <%= f.text_field :address %>
-  </div>
-  <div class="field">
-    <%= f.label :telnet_password %><br>
-    <%= f.text_field :telnet_password %>
-  </div>
-  <div class="field">
-    <%= f.label :snmp_password %><br>
-    <%= f.text_field :snmp_password %>
-  </div>
-  <div class="field">
-    <%= f.label :snmp_user %><br>
-    <%= f.text_field :snmp_user %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="form-group">
+      <%= f.label :address, class: "col-md-2 control-label" %>
+      <div class="col-md-2">
+        <%= f.text_field :address, class: "form-control" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :description, class: "col-md-2 control-label" %>
+      <div class="col-md-10">
+        <%= f.text_field :description, class: "form-control" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :telnet_password, class: "col-md-2 control-label" %>
+      <div class="col-md-2">
+        <%= f.password_field :telnet_password, class: "form-control" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :snmp_user, class: "col-md-2 control-label" %>
+      <div class="col-md-2">
+        <%= f.text_field :snmp_user, class: "form-control" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :snmp_password, class: "col-md-2 control-label" %>
+      <div class="col-md-2">
+        <%= f.password_field :snmp_password, class: "form-control" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-md-2"></div>
+      <div class="col-md-10">
+        <%= f.submit class: "btn btn-primary" %>
+        <%= link_to "Cancel", pppoe_servers_path, class: "btn btn-danger" %>
+      </div>
+    </div>
 <% end %>
+
+

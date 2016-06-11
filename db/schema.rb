@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160610100311) do
+ActiveRecord::Schema.define(version: 20160611154805) do
 
   create_table "audits", force: :cascade do |t|
     t.integer  "auditable_id"
@@ -53,6 +53,17 @@ ActiveRecord::Schema.define(version: 20160610100311) do
 
   add_index "ip_addrs", ["ip"], name: "index_ip_addrs_on_ip"
   add_index "ip_addrs", ["subnet_id"], name: "index_ip_addrs_on_subnet_id"
+
+  create_table "pppoe_servers", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "address"
+    t.string   "telnet_password"
+    t.string   "snmp_password"
+    t.string   "snmp_user"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"
