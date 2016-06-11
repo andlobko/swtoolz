@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @pppoe_server.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @pppoe_server.description %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @pppoe_server.address %>
+</p>
+
+<p>
+  <strong>Telnet password:</strong>
+  <%= @pppoe_server.telnet_password %>
+</p>
+
+<p>
+  <strong>Snmp password:</strong>
+  <%= @pppoe_server.snmp_password %>
+</p>
+
+<p>
+  <strong>Snmp user:</strong>
+  <%= @pppoe_server.snmp_user %>
+</p>
+
+<%= link_to 'Edit', edit_pppoe_server_path(@pppoe_server) %> |
+<%= link_to 'Back', pppoe_servers_path %>

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :pppoe_servers
   resources :device_templates
   devise_for :users
 
@@ -26,6 +27,5 @@ Rails.application.routes.draw do
 
   resources :subnets
   resources :ip_addrs, only: [:show, :edit, :update, :destroy]
-  resources :device_templates
 
 end

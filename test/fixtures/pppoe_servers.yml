@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyString
+  address: MyString
+  telnet_password: MyString
+  snmp_password: MyString
+  snmp_user: MyString
+
+two:
+  name: MyString
+  description: MyString
+  address: MyString
+  telnet_password: MyString
+  snmp_password: MyString
+  snmp_user: MyString

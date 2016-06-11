@@ -1,11 +1,16 @@
 class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :rememberable, :trackable
-  audited only: [:name, :role_id, :email]
   validates :password, confirmation: true
   validates :name, presence: true, uniqueness: true
   belongs_to :role
-
   before_save :assign_role
+  audited except: [:updated_at,
+                   :remember_created_at,
+                   :sign_in_count,
+                   :current_sign_in_at,
+                   :last_sign_in_at,
+                   :current_sign_in_ip,
+                   :last_sign_in_ip]
 
   def to_s
     self.name
