@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160611154805) do
+ActiveRecord::Schema.define(version: 20160613101147) do
 
   create_table "audits", force: :cascade do |t|
     t.integer  "auditable_id"
@@ -58,11 +58,13 @@ ActiveRecord::Schema.define(version: 20160611154805) do
     t.string   "name"
     t.string   "description"
     t.string   "address"
-    t.string   "telnet_password"
-    t.string   "snmp_password"
     t.string   "snmp_user"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.string   "encrypted_telnet_password"
+    t.string   "encrypted_snmp_password"
+    t.string   "encrypted_telnet_password_iv"
+    t.string   "encrypted_snmp_password_iv"
   end
 
   create_table "roles", force: :cascade do |t|

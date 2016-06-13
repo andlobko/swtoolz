@@ -35,4 +35,8 @@ module ApplicationHelper
     end
     html.html_safe
   end
+
+  def self.encryption_key
+    ENV["SwToolzKey"] ||= 'development_keydevelopment_keydevelopment_keydevelopment_key'
+  end
 end
